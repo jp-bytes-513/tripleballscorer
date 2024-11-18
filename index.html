@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Triple Ball Scorekeeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Triple Ball Scorekeeper</h1>
+        <!-- Team Names -->
+        <div id="team-names">
+            <input type="text" id="home-team-name" placeholder="Home Team">
+            <input type="text" id="away-team-name" placeholder="Away Team">
+            <button id="set-team-names">Set Team Names</button>
+        </div>
+        <!-- Scores -->
+        <div id="scores">
+            <div id="home-team-score">Home Team: 0</div>
+            <div id="away-team-score">Away Team: 0</div>
+        </div>
+        <!-- Sequence of Play -->
+        <div id="sequence-of-play">
+            <h3>Current Sequence:</h3>
+            <p id="current-sequence"></p>
+        </div>
+        <!-- Controls for scoring -->
+        <div id="controls">
+            <button id="home-score-btn">Home Team Scores</button>
+            <button id="away-score-btn">Away Team Scores</button>
+        </div>
+        <!-- Undo Button -->
+        <div id="undo-control">
+            <button id="undo-btn">Undo Last Action</button>
+        </div>
+        <!-- History -->
+        <div id="history">
+            <h3>History:</h3>
+            <ul id="history-list"></ul>
+        </div>
+        <!-- Reset Button -->
+        <div id="reset-control">
+            <button id="reset-game-btn">Reset Game</button>
+        </div>
+    </div>
+    <!-- Include JavaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

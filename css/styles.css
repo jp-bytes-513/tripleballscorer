@@ -1,0 +1,125 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#team-names input {
+    margin: 5px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+#team-names button {
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+#scores {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+#sequence-of-play {
+    margin-top: 20px;
+}
+
+#sequence-of-play h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#current-sequence {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 123, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+    }
+}
+
+#controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#controls button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    flex: 1;
+}
+
+#undo-control,
+#reset-control {
+    margin-top: 10px;
+}
+
+#undo-control button,
+#reset-control button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+
+#history {
+    margin-top: 20px;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#history-list li {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    #scores {
+        flex-direction: column;
+    }
+
+    #controls button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    #controls {
+        flex-direction: column;
+    }
+
+    #undo-control button,
+    #reset-control button {
+        width: 100%;
+    }
+}
