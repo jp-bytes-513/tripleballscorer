@@ -10,12 +10,6 @@
 <body>
     <div class="container">
         <h1>Triple Ball Scorekeeper</h1>
-        <!-- Team Names -->
-        <div id="team-names">
-            <input type="text" id="home-team-name" placeholder="Home Team">
-            <input type="text" id="away-team-name" placeholder="Away Team">
-            <button id="set-team-names">Set Team Names</button>
-        </div>
         <!-- Scores -->
         <div id="scores">
             <div id="home-team-score">Home Team: 0</div>
@@ -38,7 +32,26 @@
         <!-- History -->
         <div id="history">
             <h3>History:</h3>
-            <ul id="history-list"></ul>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Pt</th>
+                        <th>Sequence Start</th>
+                        <th>Sequence Result</th>
+                        <th id="home-team-header">Home Team</th>
+                        <th id="away-team-header">Away Team</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body">
+                    <!-- History entries will be injected here -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Team Names -->
+        <div id="team-names">
+            <input type="text" id="home-team-name" placeholder="Home Team">
+            <input type="text" id="away-team-name" placeholder="Away Team">
+            <button id="set-team-names">Set Team Names</button>
         </div>
         <!-- Reset Button -->
         <div id="reset-control">

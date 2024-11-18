@@ -9,7 +9,7 @@ let gameState = {
     sequenceIndex: 0,
     sequenceHistory: [],
     actionHistory: [],
-    pointNumber: 1, // Added point number
+    pointNumber: 1,
     sequences: [
         'Home Team Serves',
         'Away Team Tosses',
@@ -27,7 +27,7 @@ const setTeamNamesBtn = document.getElementById('set-team-names');
 const homeTeamScoreEl = document.getElementById('home-team-score');
 const awayTeamScoreEl = document.getElementById('away-team-score');
 const currentSequenceEl = document.getElementById('current-sequence');
-const historyListEl = document.getElementById('history-list');
+const historyTableBody = document.getElementById('history-body');
 const homeScoreBtn = document.getElementById('home-score-btn');
 const awayScoreBtn = document.getElementById('away-score-btn');
 const resetGameBtn = document.getElementById('reset-game-btn');
@@ -39,6 +39,7 @@ function init() {
     updateSequenceDisplay();
     updateHistory();
     updateScoringButtons();
+    updateHistoryHeaders();
 }
 
 // Set team names
@@ -50,6 +51,7 @@ setTeamNamesBtn.addEventListener('click', () => {
     updateScores();
     updateSequenceDisplay();
     updateScoringButtons();
+    updateHistoryHeaders();
 });
 
 // Update scores on the UI
@@ -65,11 +67,20 @@ function updateScoringButtons() {
     awayScoreBtn.textContent = `${gameState.awayTeam} Scores`;
 }
 
+// Update the history table headers with team names
+function updateHistoryHeaders() {
+    const homeTeamHeader = document.getElementById('home-team-header');
+    const awayTeamHeader = document.getElementById('away-team-header');
+    homeTeamHeader.textContent = gameState.homeTeam;
+    awayTeamHeader.textContent = gameState.awayTeam;
+}
+
 // Update the current sequence display
 function updateSequenceDisplay() {
     const currentSequence = gameState.sequences[gameState.sequenceIndex];
-    const sequenceText = currentSequence.replace('Home Team', gameState.homeTeam).replace('Away Team', gameState.awayTeam);
-    currentSequenceEl.textContent = sequenceText;
+    let sequenceText = currentSequence.replace('Home Team', `<strong>${gameState.homeTeam}</strong>`)
+                                      .replace('Away Team', `<strong>${gameState.awayTeam}</strong>`);
+    currentSequenceEl.innerHTML = sequenceText;
 }
 
 // Advance to the next sequence
@@ -80,19 +91,40 @@ function advanceSequence() {
 
 // Update the history display
 function updateHistory() {
-    historyListEl.innerHTML = '';
+    historyTableBody.innerHTML = '';
     // Display history entries
-    gameState.sequenceHistory.slice().reverse().forEach(entry => {
-        const li = document.createElement('li');
-        li.textContent = entry;
-        historyListEl.appendChild(li);
+    gameState.sequenceHistory.forEach(entry => {
+        const row = document.createElement('tr');
+
+        const ptCell = document.createElement('td');
+        ptCell.textContent = entry.pointNumber;
+        row.appendChild(ptCell);
+
+        const sequenceStartCell = document.createElement('td');
+        sequenceStartCell.textContent = entry.sequenceStart;
+        row.appendChild(sequenceStartCell);
+
+        const sequenceResultCell = document.createElement('td');
+        sequenceResultCell.textContent = entry.sequenceResult;
+        row.appendChild(sequenceResultCell);
+
+        const homeScoreCell = document.createElement('td');
+        homeScoreCell.textContent = entry.homeScore;
+        row.appendChild(homeScoreCell);
+
+        const awayScoreCell = document.createElement('td');
+        awayScoreCell.textContent = entry.awayScore;
+        row.appendChild(awayScoreCell);
+
+        historyTableBody.appendChild(row);
     });
 }
 
 // Handle scoring
 function handleScore(team) {
-    const sequenceStart = gameState.sequences[gameState.sequenceIndex];
-    const sequenceText = sequenceStart.replace('Home Team', gameState.homeTeam).replace('Away Team', gameState.awayTeam);
+    const sequenceStartTemplate = gameState.sequences[gameState.sequenceIndex];
+    const sequenceStart = sequenceStartTemplate.replace('Home Team', gameState.homeTeam)
+                                               .replace('Away Team', gameState.awayTeam);
 
     const action = {
         type: 'score',
@@ -104,16 +136,23 @@ function handleScore(team) {
 
     gameState.actionHistory.push(action);
 
+    let sequenceResult = '';
     if (team === 'home') {
         gameState.homeScore++;
-        var sequenceResult = `${gameState.homeTeam} scored`;
+        sequenceResult = `${gameState.homeTeam} scored`;
     } else if (team === 'away') {
         gameState.awayScore++;
-        var sequenceResult = `${gameState.awayTeam} scored`;
+        sequenceResult = `${gameState.awayTeam} scored`;
     }
 
-    // Create the history entry
-    const historyEntry = `Pt ${gameState.pointNumber} | ${sequenceText} | ${sequenceResult} | ${gameState.homeTeam}:${gameState.homeScore} | ${gameState.awayTeam}:${gameState.awayScore}`;
+    // Create the history entry object
+    const historyEntry = {
+        pointNumber: gameState.pointNumber,
+        sequenceStart: sequenceStart,
+        sequenceResult: sequenceResult,
+        homeScore: gameState.homeScore,
+        awayScore: gameState.awayScore
+    };
     gameState.sequenceHistory.push(historyEntry);
 
     // Increment point number
@@ -193,6 +232,7 @@ function resetGame() {
     updateSequenceDisplay();
     updateHistory();
     updateScoringButtons();
+    updateHistoryHeaders();
 }
 
 // Event listener for Reset Button

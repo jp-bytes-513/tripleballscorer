@@ -10,17 +10,6 @@ body {
     text-align: center;
 }
 
-#team-names input {
-    margin: 5px;
-    padding: 10px;
-    font-size: 1em;
-}
-
-#team-names button {
-    padding: 10px 20px;
-    font-size: 1em;
-}
-
 #scores {
     display: flex;
     justify-content: space-around;
@@ -94,14 +83,44 @@ body {
     margin-top: 20px;
 }
 
-#history-list {
-    list-style-type: none;
-    padding: 0;
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
 }
 
-#history-list li {
-    text-align: left;
-    margin-bottom: 5px;
+#history-table th,
+#history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 0.9em;
+}
+
+#history-table th {
+    background-color: #f2f2f2;
+}
+
+#history-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#history-table tr:hover {
+    background-color: #ddd;
+}
+
+#team-names {
+    margin-top: 20px;
+}
+
+#team-names input {
+    margin: 5px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+#team-names button {
+    padding: 10px 20px;
+    font-size: 1em;
 }
 
 @media (max-width: 600px) {
@@ -121,5 +140,10 @@ body {
     #undo-control button,
     #reset-control button {
         width: 100%;
+    }
+
+    #history-table th,
+    #history-table td {
+        font-size: 0.8em;
     }
 }
