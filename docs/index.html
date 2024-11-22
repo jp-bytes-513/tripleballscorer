@@ -10,10 +10,18 @@
 <body>
     <div class="container">
         <h1>Triple Ball Scorekeeper</h1>
-        <!-- Scores -->
+        <!-- Scores, Sets Won, and Time-Outs Remaining -->
         <div id="scores">
-            <div id="home-team-score">Home Team: 0</div>
-            <div id="away-team-score">Away Team: 0</div>
+            <div id="home-team-score-container">
+                <div id="home-team-score">Home Team: 0</div>
+                <div id="home-team-sets">Sets Won: 0</div>
+                <div id="home-team-timeouts">Time-Outs Remaining: 2</div>
+            </div>
+            <div id="away-team-score-container">
+                <div id="away-team-score">Away Team: 0</div>
+                <div id="away-team-sets">Sets Won: 0</div>
+                <div id="away-team-timeouts">Time-Outs Remaining: 2</div>
+            </div>
         </div>
         <!-- Sequence of Play -->
         <div id="sequence-of-play">
@@ -25,9 +33,23 @@
             <button id="home-score-btn">Home Team Scores</button>
             <button id="away-score-btn">Away Team Scores</button>
         </div>
-        <!-- Undo Button -->
-        <div id="undo-control">
+        <!-- Time-Out Buttons -->
+        <div id="timeout-controls">
+            <button id="home-timeout-btn">Home Team Time Out</button>
+            <button id="away-timeout-btn">Away Team Time Out</button>
+        </div>
+        <!-- Undo and Next Set Buttons -->
+        <div id="utility-controls">
             <button id="undo-btn">Undo Last Action</button>
+            <button id="next-set-btn" disabled>Start Next Set</button>
+        </div>
+        <!-- Modal for Set 3 Serve Selection -->
+        <div id="serve-selection-modal" class="modal">
+            <div class="modal-content">
+                <h2>Select Serving Team for Set 3</h2>
+                <button id="home-serve-btn">Home Team Serves</button>
+                <button id="away-serve-btn">Away Team Serves</button>
+            </div>
         </div>
         <!-- History -->
         <div id="history">
@@ -35,6 +57,7 @@
             <table id="history-table">
                 <thead>
                     <tr>
+                        <th>Set</th>
                         <th>Pt</th>
                         <th>Sequence Start</th>
                         <th>Sequence Result</th>
@@ -47,11 +70,13 @@
                 </tbody>
             </table>
         </div>
-        <!-- Team Names -->
+        <!-- Team Names and Colors -->
         <div id="team-names">
             <input type="text" id="home-team-name" placeholder="Home Team">
+            <input type="color" id="home-team-color" value="#007bff">
             <input type="text" id="away-team-name" placeholder="Away Team">
-            <button id="set-team-names">Set Team Names</button>
+            <input type="color" id="away-team-color" value="#28a745">
+            <button id="set-team-names">Set Team Names and Colors</button>
         </div>
         <!-- Reset Button -->
         <div id="reset-control">
