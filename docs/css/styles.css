@@ -1,91 +1,90 @@
 /* styles.css */
 
-/* Existing styles */
+/* General Styles */
 
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
+    padding: 10px;
 }
+
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* Scores Section */
 
 #scores {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
-    font-size: 1.2em;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 1em;
 }
 
 #scores div {
-    text-align: center;
+    flex: 1;
+    min-width: 150px;
+    margin: 5px;
 }
 
+#scores div div {
+    margin: 5px 0;
+}
+
+/* Sequence of Play */
+
 #sequence-of-play {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #sequence-of-play h3 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin-bottom: 10px;
 }
 
 #current-sequence {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     display: inline-block;
     max-width: 100%;
     word-wrap: break-word;
 }
 
-#controls {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
+/* Controls */
 
-#controls button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    flex: 1;
-}
-
-/* Time-Out Buttons */
-#timeout-controls {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-#timeout-controls button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    flex: 1;
-}
-
+#controls,
+#timeout-controls,
 #utility-controls {
     margin-top: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
+#controls button,
+#timeout-controls button,
 #utility-controls button {
-    padding: 10px 20px;
+    padding: 10px;
     margin: 5px;
     font-size: 1em;
     cursor: pointer;
-    flex: 1;
+    flex: 1 1 45%;
+    max-width: 200px;
 }
 
 /* Modal Styles */
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -100,17 +99,18 @@ body {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 400px;
+    max-width: 300px;
     text-align: center;
     border-radius: 10px;
 }
 
 .modal-content h2 {
     margin-bottom: 20px;
+    font-size: 1.2em;
 }
 
 .modal-content button {
@@ -118,23 +118,27 @@ body {
     margin: 10px;
     font-size: 1em;
     cursor: pointer;
+    width: 100%;
 }
+
+/* History Section */
 
 #history {
     margin-top: 20px;
+    overflow-x: auto;
 }
 
 #history-table {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
+    font-size: 0.9em;
 }
 
 #history-table th,
 #history-table td {
     border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 0.9em;
+    padding: 5px;
 }
 
 #history-table th {
@@ -149,18 +153,23 @@ body {
     background-color: #ddd;
 }
 
+/* Team Names and Colors */
+
 #team-names {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#team-names input[type="text"] {
+#team-names input[type="text"],
+#team-names input[type="color"] {
     margin: 5px;
     padding: 10px;
     font-size: 1em;
 }
 
 #team-names input[type="color"] {
-    margin: 5px;
     padding: 0;
     width: 40px;
     height: 40px;
@@ -170,28 +179,46 @@ body {
 #team-names button {
     padding: 10px 20px;
     font-size: 1em;
+    margin-top: 10px;
 }
 
-@media (max-width: 600px) {
-    #scores {
-        flex-direction: column;
+/* Reset Control */
+
+#reset-control {
+    margin-top: 20px;
+}
+
+#reset-control button {
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+/* Media Queries */
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #current-sequence {
+        font-size: 1.2em;
     }
 
     #controls button,
     #timeout-controls button,
     #utility-controls button {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+
+    #team-names input[type="text"],
+    #team-names input[type="color"] {
         width: 100%;
-        margin: 5px 0;
+        max-width: none;
     }
 
-    #controls,
-    #timeout-controls,
-    #utility-controls {
-        flex-direction: column;
-    }
-
-    #history-table th,
-    #history-table td {
-        font-size: 0.8em;
+    #team-names button {
+        width: 100%;
+        max-width: none;
     }
 }
